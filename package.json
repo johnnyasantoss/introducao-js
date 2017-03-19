@@ -1,0 +1,25 @@
+{
+  "name": "introducao-js",
+  "version": "1.0.0",
+  "description": "Uma pequena ajuda para quem está iniciando no JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnnyasantoss/introducao-js.git"
+  },
+  "author": "Johnny Anderson dos Santos <johnnyadsantos@gmail.com> (https://johnnyasantos.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnnyasantoss/introducao-js/issues"
+  },
+  "homepage": "https://github.com/johnnyasantoss/introducao-js#readme",
+  "dependencies": {
+    "angular": "^1.6.3",
+    "angular-material": "^1.1.3",
+    "express": "^4.15.2"
+  }
+}
