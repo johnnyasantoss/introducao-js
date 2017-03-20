@@ -1,9 +1,17 @@
+<!DOCTYPE html>
+<!--
+ Estamos definindo que o aplicativo do angular à ser usado
+ é o 'listaTarefasApp' e que iremos usar a diretiva
+ 'ng-strict-di'. Essa diretiva serve para 'obrigar'
+ o desenvolvedor à sempre usar a injeção escrita
+ das dependencias do controller.
+ -->
 <html ng-app="listaTarefasApp" ng-strict-di>
 
 <head>
     <title>Johnny A. Santos - Lista de Tarefas</title>
-    <!-- Fontes para o nosso app -->
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <!-- Fontes para facilitar a leitura -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu" rel="stylesheet">
 
     <!-- Estilo -->
     <link href="/css/app.css" rel="stylesheet">
@@ -11,8 +19,32 @@
 
 <body ng-controller="listaTarefasController as vm">
     <h1>Lista de Tarefas</h1>
-    <div id="lista">
+    <!-- Aqui criamos uma div para conter todos os objetos da nossa lista -->
+    <div class="conteiner-lista">
+        <form ng-submit="vm.novaTarefa()" class="nova-tarefa">
+            <input class="titulo" required ng-model="vm.tarefaObj.titulo" />
+            <button class="botao botao-nova-tarefa" type="submit">Nova tarefa</button>
+        </form>
+        <!--
+         Div que será repetida pela diretiva ng-repeat do Angular
+         para cada item no nosso array dentro do controller
+         -->
+        <div class="objeto-lista" ng-repeat="tarefa in vm.tarefas">
 
+            <div class="item-lista" ng-if="!tarefa.editando" ng-cloak ng-class="{ 'tarefa.concluida': 'item-finalizado' }">
+                <span class="titulo-lista" ng-bind="::tarefa.titulo"></span>
+                <button class="botao botao-edicao" ng-click="vm.editar(tarefa)">Editar</button>
+                <button class="botao botao-remocao" ng-click="vm.remover(tarefa)">Remover</button>
+            </div>
+
+            <div class="item-lista item-edicao-lista" ng-if="tarefa.editando" ng-cloak>
+                <form ng-submit="vm.salvar(tarefa)">
+                    <input ng-model="tarefa.titulo" />
+                    <button type="submit" class="botao botao-salvar">Salvar</button>
+                </form>
+            </div>
+
+        </div>
     </div>
 </body>
 <!-- Scripts sempre devem ir no final do HTML para ajudar no carregamento -->
