@@ -1,4 +1,4 @@
-# Ainda não terminado :alert:
+# :warning: Ainda não terminado :construction:
 
 # Introdução Javascript + Angular
 Uma pequena ajuda para quem está iniciando no JS
