@@ -34,8 +34,9 @@ function meuAngularApp() {
 
     // a função listen() faz com que o servidor espere
     // por requisições na porta informada
-    // nesse caso a porta 80
-    app.listen(80, function (erro) {
+    // nesse caso a porta 9000
+    var porta = (process.env.PORT || 9000);
+    app.listen(porta, function (erro) {
         // se acontecer algum erro ao ligar
         // o erro vai ser mostrado e a aplicação para
         if (erro)
@@ -43,7 +44,7 @@ function meuAngularApp() {
 
         // Exibimos no console que o servidor está ligado
         // e pronto para receber requisições
-        console.log("Servidor iniciado em http://127.0.0.1:80");
+        console.log("Servidor iniciado em http://127.0.0.1:" + porta);
     });
 
     return app;
