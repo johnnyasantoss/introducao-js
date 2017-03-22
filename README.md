@@ -1,7 +1,9 @@
-# :warning: Ainda não terminado :construction:
-
 # Introdução Javascript + Angular
 Uma pequena ajuda para quem está iniciando no JS
+
+# Acesse um teste
+
+[https://introducao-js.herokuapp.com/](https://introducao-js.herokuapp.com/)
 
 # Leia o post completo :smile:
 
