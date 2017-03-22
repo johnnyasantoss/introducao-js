@@ -6,9 +6,13 @@
  o desenvolvedor à sempre usar a injeção escrita
  das dependencias do controller.
  -->
-<html ng-app="listaTarefasApp" ng-strict-di>
+<html lang="pt-BR" ng-app="listaTarefasApp" ng-strict-di>
 
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Johnny A. Santos - Lista de Tarefas</title>
     <!-- Fontes para facilitar a leitura -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu" rel="stylesheet">
@@ -18,11 +22,12 @@
 </head>
 
 <body ng-controller="listaTarefasController as vm">
-    <h1>Lista de Tarefas</h1>
     <!-- Aqui criamos uma div para conter todos os objetos da nossa lista -->
     <div class="conteiner-lista">
+        <h1>Lista de Tarefas</h1>
+
         <form ng-submit="vm.novaTarefa()" class="nova-tarefa">
-            <input class="titulo" required ng-model="vm.tarefaObj.titulo" />
+            <input placeholder="Criar uma tarefa" class="titulo" required ng-model="vm.tarefaObj.titulo" />
             <button class="botao botao-nova-tarefa" type="submit">Nova tarefa</button>
         </form>
         <!--
@@ -33,16 +38,16 @@
 
             <div class="item-lista" ng-if="!tarefa.editando" ng-cloak ng-class="{ 'tarefa.concluida': 'item-finalizado' }">
                 <span class="titulo-lista" ng-bind="::tarefa.titulo"></span>
-                <button class="botao botao-edicao" ng-click="vm.editar(tarefa)">Editar</button>
-                <button class="botao botao-remocao" ng-click="vm.remover(tarefa)">Remover</button>
+                <div class="botoes-conteiner">
+                    <button class="botao botao-edicao" ng-click="vm.editar(tarefa)">Editar</button>
+                    <button class="botao botao-remocao" ng-click="vm.remover(tarefa)">Remover</button>
+                </div>
             </div>
 
-            <div class="item-lista item-edicao-lista" ng-if="tarefa.editando" ng-cloak>
-                <form ng-submit="vm.salvar(tarefa)">
-                    <input ng-model="tarefa.titulo" />
-                    <button type="submit" class="botao botao-salvar">Salvar</button>
-                </form>
-            </div>
+            <form ng-submit="vm.salvar(tarefa)" class="item-lista item-edicao-lista" ng-if="tarefa.editando" ng-cloak>
+                <input ng-model="tarefa.titulo" />
+                <button type="submit" class="botao botao-salvar">Salvar</button>
+            </form>
 
         </div>
     </div>
