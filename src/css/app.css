@@ -12,6 +12,23 @@ body * {
     font-family: 'Open Sans', sans-serif;
 }
 
+.footer {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 1vh;
+    font-weight: 600;
+    color: #bababa;
+}
+
+.footer a {
+    color: #585b60;
+    text-decoration: none;
+}
+
 h1,
 h2,
 h3,
