@@ -91,6 +91,16 @@ function listaTarefasController(
     }
     vm.editar = editar;
 
+    /**
+     * Troca o status da tarefa
+     * @param {Tarefa} tarefa 
+     */
+    function finalizar(tarefa) {
+        $log.debug("Alterando o status do item: %s.", tarefa.titulo);
+        tarefa.concluida = !tarefa.concluida;
+    }
+    vm.finalizar = finalizar;
+
     //retornamos o nosso objeto do controller
     return vm;
 }
@@ -98,8 +108,6 @@ function listaTarefasController(
 listaTarefasController.$inject = [
     "$log"
 ];
-
-
 
 
 /**
@@ -110,6 +118,7 @@ function Tarefa(id) {
     this.id = id;
     this.titulo = '';
     this.editando = false;
+    this.concluida = false;
 
     return this;
 }

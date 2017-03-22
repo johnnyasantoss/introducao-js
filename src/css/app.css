@@ -55,6 +55,11 @@ h6 {
     border-radius: 3px;
 }
 
+.item-finalizado .titulo-lista {
+    color: #cacaca;
+    text-decoration: line-through;
+}
+
 .item-lista,
 .nova-tarefa,
 .botoes-conteiner {
@@ -118,6 +123,9 @@ input {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    transition: color 500ms ease-in-out;
+    cursor: pointer;
+    user-select: none;
 }
 
 .titulo-lista::before {

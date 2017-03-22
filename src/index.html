@@ -36,8 +36,8 @@
          -->
         <div class="objeto-lista" ng-repeat="tarefa in vm.tarefas">
 
-            <div class="item-lista" ng-if="!tarefa.editando" ng-cloak ng-class="{ 'tarefa.concluida': 'item-finalizado' }">
-                <span class="titulo-lista" ng-bind="::tarefa.titulo"></span>
+            <div class="item-lista" ng-if="!tarefa.editando" ng-cloak ng-class="{ 'item-finalizado': tarefa.concluida }">
+                <span class="titulo-lista" ng-bind="::tarefa.titulo" ng-click="vm.finalizar(tarefa)"></span>
                 <div class="botoes-conteiner">
                     <button class="botao botao-edicao" ng-click="vm.editar(tarefa)">Editar</button>
                     <button class="botao botao-remocao" ng-click="vm.remover(tarefa)">Remover</button>
