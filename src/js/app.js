@@ -19,10 +19,19 @@ function listaTarefasController(
     //lista de tarefas
     vm.tarefas = [];
 
-    var teste = criarTarefa();
-    teste.editando = true;
-    teste.titulo = "Hello world!";
-    vm.tarefas.push(teste);
+    function inicializarTestes() {
+        var hw = criarTarefa();
+        hw.editando = true;
+        hw.titulo = "Hello world!";
+
+        vm.tarefas.push(hw);
+
+        var om = criarTarefa();
+        om.titulo = "Olá Mundo!"
+        vm.tarefas.push(om);
+    }
+    inicializarTestes();
+
 
     //objeto para criação de novas tarefas
     vm.tarefaObj = criarTarefa();
