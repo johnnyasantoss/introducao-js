@@ -9,51 +9,72 @@
 <html lang="pt-BR" ng-app="listaTarefasApp" ng-strict-di>
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Johnny A. Santos - Lista de Tarefas</title>
-    <!-- Fontes para facilitar a leitura -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu" rel="stylesheet">
+  <title>Johnny A. Santos - Lista de Tarefas</title>
+  <!-- Fontes para facilitar a leitura -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Ubuntu" rel="stylesheet">
 
-    <!-- Estilo -->
-    <link href="/css/app.css" rel="stylesheet">
+  <!-- Estilo -->
+  <link href="/css/app.css" rel="stylesheet">
 </head>
 
 <body ng-controller="listaTarefasController as vm">
-    <!-- Aqui criamos uma div para conter todos os objetos da nossa lista -->
-    <div class="conteiner-lista">
-        <h1>Lista de Tarefas</h1>
-
-        <form ng-submit="vm.novaTarefa()" class="nova-tarefa">
-            <input placeholder="Criar uma tarefa" class="titulo" required ng-model="vm.tarefaObj.titulo" />
-            <button class="botao botao-nova-tarefa" type="submit">Nova tarefa</button>
-        </form>
+  <!-- Aqui criamos uma div para conter todos os objetos da nossa lista -->
+  <div class="conteiner-lista">
+    <h1>Lista de Tarefas</h1>
+    <!--
+      ng-submit permite que você escreva uma expressão para ser avaliada e executada
+      no evento de envio do formulário em que se encontra.
+      -->
+    <form ng-submit="vm.novaTarefa()" class="nova-tarefa">
+      <input placeholder="Criar uma tarefa" class="titulo" required ng-model="vm.tarefaObj.titulo" />
+      <button class="botao botao-nova-tarefa" type="submit">Nova tarefa</button>
+    </form>
+    <!--
+      Div que será repetida pela diretiva ng-repeat do Angular
+      para cada item no nosso array dentro do controller
+      -->
+    <div class="objeto-lista" ng-repeat="tarefa in vm.tarefas">
+      <!--
+        Estou usando o ng-if para "economizar" nos *watchers* do Angular
+        ng-class faz a adesão da classe 'item-finalizado' quando o meu objeto
+        `tarefa` do escopo local tem a propriedade `concluida` como `true`
+        o ng-cloak serve para esconder os elementos do html até que o Angular
+        tenha carregado por completo
+       -->
+      <div class="item-lista" ng-if="!tarefa.editando" ng-cloak ng-class="{ 'item-finalizado': tarefa.concluida }">
         <!--
-         Div que será repetida pela diretiva ng-repeat do Angular
-         para cada item no nosso array dentro do controller
+          A diretiva ng-bind faz com que o valor dentro do meu `span` seja o da propriedade
+          `titulo` dentro do objeto `tarefa`. Os `::` (dois pontos) são para informar que esse
+          é um bind único, e que só acontecerá essa "passagem" de valores para o meu span
+          só ocorra uma vez.
+          Dica: Eu prefiro sempre usar o ng-bind ao {{}}, porque ele só é avaliado quando 
+          o Angular termina de carregar, sem mostrar o código no inicio do app.
          -->
-        <div class="objeto-lista" ng-repeat="tarefa in vm.tarefas">
-
-            <div class="item-lista" ng-if="!tarefa.editando" ng-cloak ng-class="{ 'item-finalizado': tarefa.concluida }">
-                <span class="titulo-lista" ng-bind="::tarefa.titulo" ng-click="vm.finalizar(tarefa)"></span>
-                <div class="botoes-conteiner">
-                    <button class="botao botao-edicao" ng-click="vm.editar(tarefa)">Editar</button>
-                    <button class="botao botao-remocao" ng-click="vm.remover(tarefa)">Remover</button>
-                </div>
-            </div>
-
-            <form ng-submit="vm.salvar(tarefa)" class="item-lista item-edicao-lista" ng-if="tarefa.editando" ng-cloak>
-                <input ng-model="tarefa.titulo" />
-                <button type="submit" class="botao botao-salvar">Salvar</button>
-            </form>
-
+        <span class="titulo-lista" ng-bind="::tarefa.titulo" ng-click="vm.finalizar(tarefa)"></span>
+        <div class="botoes-conteiner">
+          <!--
+            A diretiva ng-click permite que você escreva uma expressão, podendo
+            usar as variáveis do escopo local ou global do Angular,
+            que será avaliada dentro do evento de clique do botão.
+          -->
+          <button class="botao botao-edicao" ng-click="vm.editar(tarefa)">Editar</button>
+          <button class="botao botao-remocao" ng-click="vm.remover(tarefa)">Remover</button>
         </div>
+      </div>
+
+      <form ng-submit="vm.salvar(tarefa)" class="item-lista item-edicao-lista" ng-if="tarefa.editando" ng-cloak>
+        <input ng-model="tarefa.titulo" />
+        <button type="submit" class="botao botao-salvar">Salvar</button>
+      </form>
     </div>
-    <small class="footer">2017 - <a href="https://johnnyasantos.com" target="_blank">Johnny Anderson dos Santos</a></small>
+  </div>
+  <small class="footer">2017 - <a href="https://johnnyasantos.com" target="_blank">Johnny Anderson dos Santos</a></small>
 </body>
-<!-- Scripts sempre devem ir no final do HTML para ajudar no carregamento -->
+<!-- Scripts podem ir no final do HTML para ajudar no carregamento -->
 <script src="/angular/angular.js" defer></script>
 <script src="/js/app.js" defer></script>
 
