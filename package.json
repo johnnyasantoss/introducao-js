@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/johnnyasantoss/introducao-js#readme",
   "dependencies": {
-    "angular": "^1.6.3",
+    "angular": "^1.7.9",
     "express": "^4.15.2"
   }
 }
